@@ -1,8 +1,7 @@
 class Request < ActiveRecord::Base
-  attr_accessible :accepted_at, :declined_at
+  attr_accessible :requested_id
 
-belongs_to :follower, class_name: "User", foreign_key: "follower_id" 
 
-belongs_to :followed, class_name: "User", foreign_key: "followed_id" 
-
+belongs_to :requester, class_name: "User"
+belongs_to :requested, class_name: "User"
 end

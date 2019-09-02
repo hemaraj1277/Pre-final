@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :microposts, dependent: :destroy
 
+
+
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
 
@@ -22,6 +24,19 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+
+
+
+
+  
+  has_many :reverse_requests, foreign_key: "requested_id", class_name:  "Request", dependent: :destroy
+  has_many :requesters, through: :reverse_requests, source: :requester
+
+  has_many :requests, foreign_key: "requester_id", dependent: :destroy
+                                 
+                                  
+  has_many :requested_users, through: :requests, source: :requested 
+
 
 
    validates :name, presence: true, length: { maximum: 50 }
@@ -55,9 +70,20 @@ class User < ActiveRecord::Base
     relationships.create!(followed_id: other_user.id)
   end
 
-   def unfollow!(other_user)
-    relationships.find_by_followed_id(other_user.id).destroy
+ def unfollow!(other_user)
+   relationships.find_by_followed_id(other_user.id).destroy
   end
+  
+ def request!(other_user)
+
+      requests.create!(requested_id: other_user.id)
+      current_user.status=2     
+end
+
+
+#def
+
+#end
 
 
 end

@@ -2,7 +2,7 @@ class RelationshipsController < ApplicationController
   before_filter :signed_in_user
 
   def create
-    @user = User.find(params[:relationship][:followed_id])
+    @user = User.find(params[:relationship][:follower_id])
     current_user.follow!(@user)
       respond_to do |format|
       format.html { redirect_to @user }
@@ -19,7 +19,7 @@ class RelationshipsController < ApplicationController
       end
   end
 
-  def send_request
-    
-  end
+  
+
+
 end

@@ -5,6 +5,7 @@
   <aside class="span4">
     <section>
       <h1>
+
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
@@ -23,7 +24,7 @@
 
         <%= render @microposts %>
       </ol>
-      <%= will_paginate @microposts %>
+     <%= will_paginate @microposts %>
     <% end %>
     <% end %> 
   </div>

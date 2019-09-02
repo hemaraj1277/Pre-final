@@ -1,0 +1,13 @@
+
+
+  <% if @users.any? %>
+      
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <ul class="users">
+        <%= render 'userreq' %>
+      </ul>
+      <%= will_paginate %>
+    <% end %>
+  
+      <% end %>

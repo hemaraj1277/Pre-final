@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
  
 
- before_filter :signed_in_user, only: [:edit, :update]
+ before_filter :signed_in_user, only: [:edit, :update, :requestuser]
  before_filter :correct_user,   only: [:edit, :update]
  before_filter :admin_user,     only: :destroy
 
@@ -45,6 +45,7 @@ public
   end
 
   def update
+
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       
@@ -62,6 +63,7 @@ public
    def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page]) 
+   
   end
 
    def edit
@@ -89,8 +91,16 @@ public
   end
 
 
+ def requests
 
- 
+     @title = "Requests"
+     @user = User.find(params[:id])
+     @users = @user.requesters.paginate(page: params[:page])
+    # @user.requests
+    
+ end
+
+
 
   
 end

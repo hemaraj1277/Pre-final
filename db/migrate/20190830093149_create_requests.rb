@@ -1,8 +1,8 @@
 class CreateRequests < ActiveRecord::Migration
   def change
     create_table :requests do |t|
-      t.boolean :accepted_at
-      t.boolean :declined_at
+      t.integer :requested_id
+      t.integer :requester_id
 
       t.timestamps
     end
