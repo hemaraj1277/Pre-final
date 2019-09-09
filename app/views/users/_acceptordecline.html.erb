@@ -1,23 +1,32 @@
-<li>
-  
-   <div class="user_avatars">
+
+
+
+   <ul class="users">
+   	
+   <div class="reqs">
           <% @users.each do |user| %>
             <%= link_to gravatar_for(user, size: 30), user %>
             <%= link_to user.name, user %>
-          <% end %>
-      
+   
 
-  
-  <%= form_for(current_user.relationships.build(follower_id: @user.id)) do |f| %>
+  <%= form_for(current_user.relationships.build(follower_id: user.id)) do |f| %>
   <%= f.hidden_field :follower_id %>
   <%= f.submit "Accept", class: "btn btn-large btn-primary" %>
+
+
+
 <% end %>
 
  
-  <%= form_for(current_user.relationships.build(follower_id: @user.id)) do |f| %>
-  <div><%= f.hidden_field :follower_id %></div>
+
+<%= form_for(user.requests.find_by_requested_id(current_user),
+             html: { method: :delete }) do |f| %>
   <%= f.submit "Decline", class: "btn btn-large btn-primary" %>
 <% end %>
+</div>	
+ 
+  <% end %>
 
-  </div>
- <li>
+  </ul>
+
+ 

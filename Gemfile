@@ -9,17 +9,22 @@
   gem 'will_paginate', '3.0.3'  
   gem 'yaml_db'
   gem 'mysql2', '~> 0.3.0'
+  # gem 'activejob'
 
   group :development, :test do
      #gem 'sqlite3', '1.3.13'
      
-
+    gem 'devise'
     gem 'rspec-rails', '2.11.0'
      gem 'guard-rspec', '1.2.1'
+     gem 'active_model_otp'
   end
 
   group :development do
     gem 'annotate', '2.5.0'
+    gem 'byebug'
+    gem 'sidekiq', '3.5.4'
+  
   end
 
 

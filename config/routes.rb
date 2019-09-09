@@ -3,9 +3,14 @@ SampleApp::Application.routes.draw do
  
  
 
+ 
+
+ get 'password_resets/new'
+
   resources :users do 
   	member do
       get :following, :followers, :requests
+
   
     end
       end
@@ -13,7 +18,24 @@ SampleApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
-  resources :requests, only: [:create]
+
+  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :requests do
+
+   member do 
+
+       put :cancel
+
+
+     end
+     end    
+
+
+  	  
+
+
+
+  		
 
  
   root to:          'static_pages#home'
@@ -23,7 +45,7 @@ SampleApp::Application.routes.draw do
  match '/signout', to: 'sessions#destroy', via: :delete
  match '/help',    to: 'static_pages#help'
  match '/about',   to: 'static_pages#about'
- #match '/request', to: 'users#requests', via: [:get, :post], as: :requestuser
+ 
 
   
 end

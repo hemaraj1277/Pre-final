@@ -1,0 +1,19 @@
+<% if current_user.hasrequest?(@user) %>
+
+
+<%= form_for @user, :url => url_for(:controller => 'requests', :action => 'cancel') do |f| %>
+
+  <%= f.submit "Requested", class: "btn btn-large btn-primary" %>
+<% end %>
+
+
+
+
+<% else %>
+
+<%= form_for(current_user.requests.build(requested_id: @user.id)) do |f| %>
+  <div><%= f.hidden_field :requested_id %></div>
+  <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>
+
+<% end %>
