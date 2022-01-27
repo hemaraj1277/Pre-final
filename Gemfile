@@ -23,7 +23,7 @@
   group :development do
     gem 'annotate', '2.5.0'
     gem 'byebug'
-    gem 'sidekiq', '3.5.4'
+    gem 'sidekiq', '5.2.8'
   
   end
 
